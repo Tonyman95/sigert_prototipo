@@ -1,0 +1,161 @@
+{
+  "centers": [
+    "Osorno",
+    "Santiago",
+    "Coquimbo"
+  ],
+  "solicitudes": [
+    {
+      "id": "S-1042",
+      "cliente": "Frutera Sur",
+      "origen": "Osorno",
+      "destino": "Santiago",
+      "pesoKg": 12000,
+      "volM3": 35,
+      "fechaRetiro": "2025-10-08",
+      "fechaEntrega": "2025-10-09",
+      "centro": "Osorno",
+      "estado": "Validada",
+      "slaHoras": 22,
+      "km": 930
+    },
+    {
+      "id": "S-1043",
+      "cliente": "RetailMax",
+      "origen": "Santiago",
+      "destino": "Coquimbo",
+      "pesoKg": 8000,
+      "volM3": 28,
+      "fechaRetiro": "2025-10-08",
+      "fechaEntrega": "2025-10-09",
+      "centro": "Santiago",
+      "estado": "EnEstimacion",
+      "slaHoras": 36,
+      "km": 470
+    },
+    {
+      "id": "S-1044",
+      "cliente": "Lacteos Ltda",
+      "origen": "Puerto Varas",
+      "destino": "Santiago",
+      "pesoKg": 15000,
+      "volM3": 40,
+      "fechaRetiro": "2025-10-08",
+      "fechaEntrega": "2025-10-10",
+      "centro": "Osorno",
+      "estado": "Recibida",
+      "slaHoras": 18,
+      "km": 1010
+    },
+    {
+      "id": "S-1045",
+      "cliente": "Alimentos Norte",
+      "origen": "Coquimbo",
+      "destino": "Antofagasta",
+      "pesoKg": 9000,
+      "volM3": 30,
+      "fechaRetiro": "2025-10-09",
+      "fechaEntrega": "2025-10-11",
+      "centro": "Coquimbo",
+      "estado": "EnAprobacion",
+      "slaHoras": 40,
+      "km": 1100
+    },
+    {
+      "id": "S-1046",
+      "cliente": "Multitiendas XYZ",
+      "origen": "Santiago",
+      "destino": "Valparaiso",
+      "pesoKg": 5000,
+      "volM3": 20,
+      "fechaRetiro": "2025-10-09",
+      "fechaEntrega": "2025-10-09",
+      "centro": "Santiago",
+      "estado": "Validada",
+      "slaHoras": 52,
+      "km": 120
+    }
+  ],
+  "propuestas": [],
+  "contratos": [],
+  "flota": [
+    {
+      "patente": "AA-BB11",
+      "tipo": "GC",
+      "capacidadKg": 25000,
+      "capacidadM3": 60,
+      "centro": "Santiago",
+      "estado": "Disponible"
+    },
+    {
+      "patente": "CC-DD22",
+      "tipo": "GC",
+      "capacidadKg": 25000,
+      "capacidadM3": 60,
+      "centro": "Osorno",
+      "estado": "Disponible"
+    },
+    {
+      "patente": "EE-FF33",
+      "tipo": "MC",
+      "capacidadKg": 14000,
+      "capacidadM3": 40,
+      "centro": "Coquimbo",
+      "estado": "FueraServicio"
+    },
+    {
+      "patente": "GG-HH44",
+      "tipo": "MC",
+      "capacidadKg": 14000,
+      "capacidadM3": 40,
+      "centro": "Santiago",
+      "estado": "Disponible"
+    }
+  ],
+  "conductores": [
+    {
+      "id": "DRV-01",
+      "nombre": "Juan Pérez",
+      "licencia": "A5",
+      "telefono": "+56 9 1111 1111"
+    },
+    {
+      "id": "DRV-02",
+      "nombre": "María López",
+      "licencia": "A5",
+      "telefono": "+56 9 2222 2222"
+    }
+  ],
+  "facturas": [],
+  "proveedores": [
+    {
+      "id": "PRV-01",
+      "nombre": "ACME OILS",
+      "tipo": "Combustible"
+    },
+    {
+      "id": "PRV-02",
+      "nombre": "Repuestos Norte",
+      "tipo": "Repuestos"
+    }
+  ],
+  "settings": {
+    "precioLitro": 1.2,
+    "consumoKmPorLitro": 3.0,
+    "viaticoDia": 35,
+    "margenMin": 0.25,
+    "margenMax": 0.35
+  },
+  "logs": [
+    "Propuesta P-1042 enviada a Frutera Sur",
+    "Contrato C-1042 confirmado",
+    "Factura F-1042 aceptada por SII",
+    "OT-0001 programada para AA-BB11",
+    "Alerta SLA: S-1044 a 18h",
+    "Conflicto de agenda resuelto (Santiago)"
+  ],
+  "metrics": {
+    "leadTime": 2.4,
+    "margen": 28.7
+  }
+}

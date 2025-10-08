@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SIGERT · Prototipo</title>
+  <link rel="stylesheet" href="assets/styles.css"/>
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div class="brand">SIGERT · ACME TRANS</div>
+      <input id="globalSearch" class="search" placeholder="Buscar: cliente, solicitud, contrato, patente…" />
+      <select id="centerSelect" class="select">
+        <option value="ALL">Todos los centros</option>
+        <option value="Osorno">Osorno</option>
+        <option value="Santiago">Santiago</option>
+        <option value="Coquimbo">Coquimbo</option>
+      </select>
+      <select id="roleSelect" class="select">
+        <option>Operaciones</option>
+        <option>Direccion</option>
+        <option>Finanzas</option>
+        <option>Admin Centro</option>
+      </select>
+      <button id="notifBtn" class="icon-btn" title="Notificaciones">🔔</button>
+    </header>
+
+    <aside class="sidebar">
+      <nav>
+        <a href="#/dashboard">Dashboard</a>
+        <a href="#/solicitudes">Solicitudes</a>
+        <a href="#/propuestas">Propuestas</a>
+        <a href="#/contratos">Contratos</a>
+        <a href="#/flota">Flota</a>
+        <a href="#/mantenimiento">Mantenimiento</a>
+        <a href="#/facturacion">Facturación</a>
+        <a href="#/clientes">Portal Cliente</a>
+        <a href="#/config">Configuración</a>
+      </nav>
+    </aside>
+
+    <main id="view" class="view"></main>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
