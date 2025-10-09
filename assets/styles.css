@@ -55,3 +55,14 @@ html, body { margin:0; padding:0; font-family: ui-sans-serif, system-ui, -apple-
 
 .footer-actions { display:flex; gap:8px; justify-content:flex-end; padding:10px; border-top:1px solid var(--border); }
 .small { color: var(--muted); font-size:12px; }
+
+/* Auth overlay */
+.auth-overlay { position: fixed; inset: 0; display:flex; align-items:center; justify-content:center; background: rgba(2,6,23,0.45); z-index:9999; padding:20px; }
+.auth-overlay .card { max-width:420px; width:100%; }
+.auth-overlay .input { width:100%; margin-top:6px; }
+.auth-overlay .header { text-align:center; }
+
+/* When on the login page we hide the topbar and sidebar to present a clean login */
+.login-mode .topbar, .login-mode .sidebar { display:none !important; }
+.login-mode .view { padding:80px 16px; }
+.login-mode .card { margin:0 auto; }

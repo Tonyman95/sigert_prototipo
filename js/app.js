@@ -9,23 +9,41 @@ import { MantenimientoView } from './views/mantenimiento.js';
 import { FacturacionView } from './views/facturacion.js';
 import { ClientesView } from './views/clientes.js';
 import { ConfigView } from './views/config.js';
+import { isAuthenticated, logout } from './auth.js';
+import { LoginView } from './views/login.js';
+
+console.debug('app.js loaded');
 
 loadMock();
-if(!db.solicitudes.length){
-  try{
-    const res = await fetch('./data/seed.json');
-    if(res.ok){
-      const seed = await res.json();
-      Object.assign(db, seed);
-      persist();
-    }else{
-      console.warn('No se pudo cargar seed.json, response not ok', res.status);
+
+async function ensureSeed(){
+  if(!db.solicitudes.length){
+    try{
+      const res = await fetch('./data/seed.json');
+      if(res.ok){
+        const seed = await res.json();
+        Object.assign(db, seed);
+        persist();
+      }else{
+        console.warn('No se pudo cargar seed.json, response not ok', res.status);
+      }
+    }catch(e){
+      console.warn('Fallo al cargar ./data/seed.json — si estás abriendo el archivo con file://, sirve el directorio con un servidor HTTP', e);
     }
-  }catch(e){
-    console.warn('Fallo al cargar ./data/seed.json — si estás abriendo el archivo con file://, sirve el directorio con un servidor HTTP', e);
   }
 }
+
 const outlet = document.getElementById('view');
+let logoutBtn = document.getElementById('logoutBtn');
+if(!logoutBtn){
+  logoutBtn = document.createElement('button');
+  logoutBtn.id = 'logoutBtn';
+  logoutBtn.className = 'icon-btn';
+  logoutBtn.title = 'Cerrar sesión';
+  logoutBtn.style.display = 'none';
+  const top = document.querySelector('.topbar') || document.body;
+  top.appendChild(logoutBtn);
+}
 const routes = {
   '#/dashboard': async ()=> DashboardView(),
   '#/solicitudes': async ()=> SolicitudesView(),
@@ -36,9 +54,41 @@ const routes = {
   '#/facturacion': async ()=> FacturacionView(),
   '#/clientes': async ()=> ClientesView(),
   '#/config': async ()=> ConfigView(),
+  '#/login': async ()=> LoginView(),
   '#/404': async ()=> { const d = document.createElement('div'); d.innerHTML='<div class="card"><div class="header">404</div><div class="body">Vista no encontrada</div></div>'; return d; }
 };
-new Router({ routes, outlet });
+let routerInstance = null;
+
+function startApp(){
+  ensureSeed().then(()=>{
+    routerInstance = new Router({ routes, outlet });
+  });
+}
+
+// If not authenticated, force login-mode and redirect to login before starting the app
+try{
+  const appEl = document.getElementById('app');
+  if(!isAuthenticated()){
+    try{ if(appEl) appEl.classList.add('login-mode'); }catch(e){}
+    try{ location.hash = '#/login'; }catch(e){}
+    try{ logoutBtn.style.display='none'; }catch(e){}
+  }
+}catch(e){ console.warn('Could not enforce initial login-mode', e); }
+
+startApp();
+
+if(isAuthenticated()){
+  try{ logoutBtn.style.display='inline-block'; }catch(e){}
+}
+
+if(logoutBtn){
+  logoutBtn.addEventListener('click', ()=>{
+    logout();
+    location.hash = '#/login';
+    try{ document.getElementById('app').classList.add('login-mode'); }catch(e){}
+    try{ logoutBtn.style.display='none'; }catch(e){}
+  });
+}
 document.getElementById('globalSearch').addEventListener('input', (e)=>{
   const q = e.target.value.toLowerCase();
   const hits = [
